@@ -1,24 +1,20 @@
-
-void main(){
-  // Future myFuture = Future((){
+void main() {
+  // Future myFuture = Future(() {
   //   print('Going back to the Future');
   //   return 21;
-  // }).then((value) => print('The value $value'));
+  // }).then((value) => print('O resultado foi: $value'));
 
-  // Future<int> myFutureFunc()async{
-  //   print('I have a function in the future');
-  //   await Future.delayed(Duration(seconds: 5));
-  //   throw Exception();
-  //   return 12;
-  //
-  // }
+  Future<int> myFutureFunc() async {
+    print('I have a function in the Future');
+    await Future.delayed(Duration(seconds: 2));
+    // throw Exception();
+    return 12;
+  }
 
   // myFutureFunc()
-  //     .then((value) => print('My function value is: $value'))
-  //     .onError((error, stackTrace) => print('On Error ocurred'))
-  //     .whenComplete(() => print('The Future is over'));
-
-
+  //     .then((value) => print('O valor da função é: $value'))
+  //     .onError((error, stackTrace) => print('An Error happend'))
+  //     .whenComplete(() => print('The Future is Over'));
 
 
   Future<int> myFutureErrorFunc(int a, int b)async{
@@ -26,19 +22,18 @@ void main(){
       if(a>b){
         throw Exception();
       }
-      print('I have a functional function');
-      await Future.delayed(Duration(seconds: 5));
+      print('I am a Functional Function');
+      await Future.delayed(Duration(seconds: 3));
       return 42;
-    } catch(e){
-        print('An error ocurred $e');
-        return 42;
+    }catch(e){
+      print('An Error happend: $e');
+      return 42;
+    }finally{
+      print('The Future is finally Over');
     }
-    finally{
-        print('The future is finally over');
-    }
-  }
 
-  myFutureErrorFunc(1, 2).then((value) => print('The value is : $value'));
+  }
+myFutureErrorFunc(1, 2).then((value) => print('The value is: $value'));
 
   print('Done with main');
 }
